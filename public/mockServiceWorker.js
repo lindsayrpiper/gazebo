@@ -245,14 +245,6 @@ async function getResponse(event, client, requestId) {
   return passthrough()
 }
 
-function sendToClient(client, message, transferrables = []) {
-  return new Promise((resolve, reject) => {
-    const channel = new MessageChannel()
-
-    channel.port1.onmessage = (event) => {
-      if (event.data && event.data.error) {
-        return reject(event.data.error)
-      }
 
       resolve(event.data)
     }
